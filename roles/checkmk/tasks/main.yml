@@ -1,0 +1,38 @@
+- name: Install | CheckMK CentOS 6
+  become: yes
+  yum:
+    name: {{ centos_agent_package }}
+    state: present
+  when: ansible_os_family == "RedHat" ansible_distribution_version =="6"
+
+- name: Install | CheckMK Ubuntu 14
+  become: yes
+  apt:
+    deb: {{ debian_agent_package }}
+    state: present
+    update_cache: yes
+  when: ansible_os_family == "Debian" and ansible_distribution_version == "14"
+  
+- name: Install xinetd | CentOS
+  become: yes
+  yum:
+    name: xinetd
+    state: present
+   when: ansible_os_family == "RedHat"
+  
+- name: Install xinetd | Ubuntu
+  become: yes
+  apt:
+    name: xinetd
+    state: present
+  when: ansible_os_family == "Debian" and ansible_distribution_version == "14"
+   
+- name: Config CheckMK
+  template:
+    src: check_mk.j2
+    dest: /etc/xinetd.d/check_mk
+    owner: root
+    group: root
+    mode: '0644'
+  when: ansible_os_family == "RedHat" or ansible_os_family == "Debian"
+  notify: restart xinetd
