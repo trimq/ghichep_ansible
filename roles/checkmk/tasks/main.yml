@@ -1,9 +1,17 @@
+- name: Download | CheckMK CentOS 6
+  become: yes
+  get_url:
+    url: "{{ centos_agent_package }}"
+    validate_certs: False
+    dest: /root/
+    mode: '0644'
+  when: ansible_os_family == "RedHat"
+
 - name: Install | CheckMK CentOS 6
   become: yes
   yum:
-    name: "{{ centos_agent_package }}"
+    name: /root/check-mk-agent-1.5.0p22-1.noarch.rpm
     state: present
-    validate_certs: False
   when: ansible_os_family == "RedHat" and ansible_distribution_version =="6"
 
 - name: Install | CheckMK Ubuntu 14
