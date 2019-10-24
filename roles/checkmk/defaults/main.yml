@@ -2,3 +2,4 @@
 check_mk_server: 203.162.79.139
 centos_agent_package: http://203.162.79.139/monitor/check_mk/agents/check-mk-agent-1.5.0p22-1.noarch.rpm
 debian_agent_package: http://203.162.79.139/monitor/check_mk/agents/check-mk-agent_1.5.0p22-1_all.deb
+inventory_file: http://203.162.79.139/monitor/check_mk/agents/plugins/mk_inventory.linux
