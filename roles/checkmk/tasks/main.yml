@@ -40,10 +40,10 @@
 - name: Download inventory file check hardware:
   become: yes
   get_url:
-  url: "{{ inventory_file }}"
-  validate_certs: False
-  dest: /usr/lib/check_mk_agent/plugins/
-  mode: '0755'
+    url: "{{ inventory_file }}"
+    validate_certs: False
+    dest: /usr/lib/check_mk_agent/plugins/
+    mode: '0755'
   tags: inventory
   
 - name: Config CheckMK

@@ -41,7 +41,7 @@ service check_mk
         #server         = /usr/bin/check_mk_caching_agent
 
         # configure the IP address(es) of your Nagios server here:
-        only_from      = {{ check_mk_server }}
+        only_from      = {{ check_mk_server_kt }} {{ check_mk_server_mon }} {{ check_mk_server_ms }}
 
         # Don't be too verbose. Don't log every check. This might be
         # commented out for debugging. If this option is commented out
