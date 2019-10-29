@@ -46,6 +46,11 @@
     mode: '0755'
   tags: inventory
   
+- name: Enable filewall csf;
+  become: yes
+  shell: csf -a {{ check_mk_server_kt }} CheckMK
+  tags: firewall
+  
 - name: Config CheckMK
   template:
     src: check_mk.j2
